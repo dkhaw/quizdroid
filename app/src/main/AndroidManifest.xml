@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TopicOverview"
+            android:label="@string/title_activity_topic_overview"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.washington.dkhaw.quizdroid.MainActivity" />
+        </activity>
+        <activity
+            android:name=".QuestionPage"
+            android:label="@string/title_activity_question_page" >
+        </activity>
+        <activity
+            android:name=".AnswerPage"
+            android:label="@string/title_activity_answer_page" >
+        </activity>
     </application>
 
 </manifest>
