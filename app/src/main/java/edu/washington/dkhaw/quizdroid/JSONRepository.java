@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
-import java.util.Scanner;
 
 
 public class JSONRepository implements TopicRepository {
@@ -22,13 +21,13 @@ public class JSONRepository implements TopicRepository {
         return allTopics;
     }
 
-    public Topic getTopicByKeyword(String keyword) {
-        return topics.get(keyword);
+    public Topic getTopic(String topic) {
+        return topics.get(topic);
     }
 
     public JSONRepository(InputStream input) throws IOException, JSONException {
         topics = new HashMap<>();
-        String json = new Scanner(input).useDelimiter("\\A").next();
+        String json = readJSONFile(input);
         JSONArray jsonTopics = new JSONArray(json);
         // separate into topics
         for (int i = 0; i < jsonTopics.length(); i++) {
@@ -41,14 +40,13 @@ public class JSONRepository implements TopicRepository {
             for (int j = 0; j < jsonQuestions.length(); j++) {
                 JSONObject jsonObject1 = jsonQuestions.getJSONObject(j);
                 String questionText = jsonObject1.getString("text");
+                int correct = Integer.parseInt(jsonObject1.getString("answer")) - 1;
                 JSONArray jsonAnswers = jsonObject1.getJSONArray("answers");
                 List<String> answers = new ArrayList<>();
                 // separate into answers
                 for (int k = 0; k < jsonAnswers.length(); k++) {
                     answers.add(jsonAnswers.getString(k));
                 }
-
-                int correct = Integer.parseInt(jsonObject1.getString("answer")) - 1;
                 Question question = new Question(questionText, answers, correct);
                 questions.add(question);
             }

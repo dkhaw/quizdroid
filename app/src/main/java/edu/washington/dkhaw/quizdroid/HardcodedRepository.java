@@ -12,8 +12,8 @@ public class HardcodedRepository implements TopicRepository {
         return allTopics;
     }
 
-    public Topic getTopicByKeyword(String keyword) {
-        return topics.get(keyword);
+    public Topic getTopic(String topic) {
+        return topics.get(topic);
     }
 
     public HardcodedRepository() {

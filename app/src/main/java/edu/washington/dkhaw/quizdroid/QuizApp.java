@@ -26,7 +26,7 @@ public class QuizApp extends Application {
         }
         // Fetch data.json in assets/ folder
         try {
-            InputStream input = getAssets().open("data.json");
+            InputStream input = getAssets().open("questions.json");
             repo = new JSONRepository(input);
             throw new JSONException("JSONException");
             // use hardcoded data as a backup

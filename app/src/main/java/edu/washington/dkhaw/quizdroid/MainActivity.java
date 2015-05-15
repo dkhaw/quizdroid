@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
 
         // Application singleton
         QuizApp app = (QuizApp) getApplication();
-        TopicRepository repo = app.getTopicRepository();
+        final TopicRepository repo = app.getTopicRepository();
         String[] topics = repo.getAllTopics();
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
