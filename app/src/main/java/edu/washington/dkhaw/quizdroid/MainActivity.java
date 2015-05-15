@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 
@@ -21,7 +20,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] topics = new String[] {"Math", "Physics", "Marvel"};
+        // Application singleton
+        QuizApp app = (QuizApp) getApplication();
+        TopicRepository repo = app.getTopicRepository();
+        String[] topics = repo.getAllTopics();
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 topics);
