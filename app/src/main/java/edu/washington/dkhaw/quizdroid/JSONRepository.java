@@ -3,26 +3,22 @@ package edu.washington.dkhaw.quizdroid;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.lang.reflect.Array;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
 
 
-public class JSONRepository implements TopicRepository {
+public class JSONRepository implements QuizApp.TopicRepository {
     private HashMap<String, Topic> topics;
 
     public String[] getAllTopics() {
-        String[] allTopics = topics.keySet().toArray(new String[10]);
-        return allTopics;
+        return topics.keySet().toArray(new String[topics.size()]);
     }
 
-    public Topic getTopic(String topic) {
-        return topics.get(topic);
+    public Topic getTopic(String title) {
+        return topics.get(title);
     }
 
     public JSONRepository(InputStream input) throws IOException, JSONException {

@@ -1,6 +1,7 @@
 package edu.washington.dkhaw.quizdroid;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,20 +10,32 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import org.json.JSONException;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    public static final String TITLE = "edu.washington.dkhaw.quizdroid.TITLE";
+    public static final String TOPIC = "edu.washington.dkhaw.quizdroid.TOPIC";
+    private QuizApp.TopicRepository repo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Fetch data.json in assets/ folder
+        //QuizApp app = (QuizApp) getApplication();
+        AssetManager assetManager = getAssets();
+        try {
+            InputStream input = assetManager.open("questions.json");
+            repo = new JSONRepository(input);
+            // use hardcoded data as a backup
+        } catch (IOException | JSONException e) {
+            repo = new HardcodedRepository();
+        }
 
-        // Application singleton
-        QuizApp app = (QuizApp) getApplication();
-        final TopicRepository repo = app.getTopicRepository();
+        //final TopicRepository repo = app.getTopicRepository();
         String[] topics = repo.getAllTopics();
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
@@ -32,9 +45,9 @@ public class MainActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final String title = (String) parent.getItemAtPosition(position);
+                Topic topic = repo.getTopic(parent.getItemAtPosition(position).toString());
                 Intent next = new Intent(getApplicationContext(), QuizActivity.class);
-                next.putExtra(TITLE, title);
+                next.putExtra(TOPIC, topic);
                 startActivity(next);
             }
         });

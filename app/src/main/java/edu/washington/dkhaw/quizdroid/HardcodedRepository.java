@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HardcodedRepository implements TopicRepository {
-    private HashMap<String, Topic> topics;
+public class HardcodedRepository implements QuizApp.TopicRepository {
+    protected HashMap<String, Topic> topics;
 
     public String[] getAllTopics() {
-        String[] allTopics = topics.keySet().toArray(new String[10]);
-        return allTopics;
+        return topics.keySet().toArray(new String[topics.size()]);
     }
 
-    public Topic getTopic(String topic) {
-        return topics.get(topic);
+    public Topic getTopic(String title) {
+        return topics.get(title);
     }
 
     public HardcodedRepository() {
         topics = new HashMap<>();
 
-        final List<Question> mQuestions = new ArrayList<>();
+        List<Question> mQuestions = new ArrayList<>();
         List<String> mAnswers1 = new ArrayList<>();
         List<String> mAnswers2 = new ArrayList<>();
         List<String> mAnswers3 = new ArrayList<>();
@@ -41,7 +40,7 @@ public class HardcodedRepository implements TopicRepository {
         Topic mTopic = new Topic("Math", "A game of numbers", mQuestions);
         topics.put("Math", mTopic);
 
-        final List<Question> pQuestions = new ArrayList<>();
+        List<Question> pQuestions = new ArrayList<>();
         List<String> pAnswers1 = new ArrayList<>();
         List<String> pAnswers2 = new ArrayList<>();
         List<String> pAnswers3 = new ArrayList<>();
@@ -63,7 +62,7 @@ public class HardcodedRepository implements TopicRepository {
         Topic pTopic = new Topic("Physics", "May the force be with you", pQuestions);
         topics.put("Physics", pTopic);
 
-        final List<Question> vQuestions = new ArrayList<>();
+        List<Question> vQuestions = new ArrayList<>();
         List<String> vAnswers1 = new ArrayList<>();
         List<String> vAnswers2 = new ArrayList<>();
         List<String> vAnswers3 = new ArrayList<>();

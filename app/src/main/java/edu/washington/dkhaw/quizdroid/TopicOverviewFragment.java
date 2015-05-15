@@ -1,7 +1,6 @@
 package edu.washington.dkhaw.quizdroid;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,7 +23,7 @@ public class TopicOverviewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             Bundle args = getArguments();
-            topic = (Topic) args.getSerializable(QuizActivity.TOPIC);
+            topic = (Topic) args.getSerializable(MainActivity.TOPIC);
         }
     }
 

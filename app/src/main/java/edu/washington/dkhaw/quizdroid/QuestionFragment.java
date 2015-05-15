@@ -3,7 +3,6 @@ package edu.washington.dkhaw.quizdroid;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ public class QuestionFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             Bundle args = getArguments();
-            topic = (Topic) args.getSerializable(QuizActivity.TOPIC);
+            topic = (Topic) args.getSerializable(MainActivity.TOPIC);
             count = args.getInt(QuizActivity.COUNT);
         }
     }
