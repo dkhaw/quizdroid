@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
 
-    public static final String TOPIC = "edu.washington.dkhaw.quizdroid.TOPIC";
+    public static final String TITLE = "edu.washington.dkhaw.quizdroid.TITLE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,13 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 topics);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final String itemValue = (String) parent.getItemAtPosition(position);
-                Intent next = new Intent(getApplicationContext(), TopicOverview.class);
-                next.putExtra(TOPIC, itemValue);
+                final String title = (String) parent.getItemAtPosition(position);
+                Intent next = new Intent(getApplicationContext(), QuizActivity.class);
+                next.putExtra(TITLE, title);
                 startActivity(next);
             }
         });

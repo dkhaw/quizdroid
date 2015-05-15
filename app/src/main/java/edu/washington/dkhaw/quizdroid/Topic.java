@@ -1,8 +1,9 @@
 package edu.washington.dkhaw.quizdroid;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Topic {
+public class Topic implements Serializable {
     private String title;
     private String desc;
     private List<Question> questions;
