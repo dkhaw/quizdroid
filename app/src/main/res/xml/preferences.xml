@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Preferences" >
+        <EditTextPreference
+            android:title="Question Data URL"
+            android:summary="URL to fetch question data from"
+            android:key="prefDataUrl"/>
+
+        <EditTextPreference
+            android:title="Download Interval"
+            android:summary="Interval in minutes to check for new downloads"
+            android:key="prefDownloadInterval" />
+    </PreferenceCategory>
+</PreferenceScreen>
