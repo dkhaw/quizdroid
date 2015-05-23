@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.washington.dkhaw.quizdroid" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".QuizApp"
         android:allowBackup="true"
@@ -37,6 +40,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+        <service android:name="edu.washington.dkhaw.quizdroid.DownloadService" />
     </application>
 
 </manifest>
